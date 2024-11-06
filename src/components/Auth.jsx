@@ -25,7 +25,20 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  
+  const onSubmit = async(event) => {
+    event.preventDefault();
+
+    try{
+        await axios.post("http://localhost:3001/auth/register", {
+            username,
+            password,
+        });
+        alert("Registered successfully");
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   return (
     <div className="flex flex-col items-center justify-center py-44 text-[#2a2d34]">
       <Card className="w-[350px] bg-[#d7dae0] border-[#484f5c]">
