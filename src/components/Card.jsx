@@ -12,6 +12,8 @@ import { Input } from "./ui/input";
 import { Login } from "@/pages/login";
 import { Signup } from "@/pages/register";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export const AuthPage = () => {
   return (
@@ -35,7 +37,12 @@ export const Form = ({
   linktext,
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center py-36 text-[#2a2d34]">
+    <motion.div
+      whileInView={{ opacity: 1, x: 50 }}
+      initial={{ opacity: 0, x: 0  }}
+      transition={{ duration: 1 }}
+      className="flex flex-col items-center justify-center py-36 pr-20 md:pr-10 text-[#2a2d34]"
+    >
       <Card className="w-[300px] md:w-[350px] bg-[#1F1F1F] border-[#484f5c]">
         <CardHeader>
           <CardTitle className="text-center text-white text-xl">
@@ -76,7 +83,7 @@ export const Form = ({
         <CardFooter className="flex flex-col">
           <div>
             <h1 className="cursor-default mb-5 text-white text-sm">
-              {linktext} {"  "} 
+              {linktext} {"  "}
               <Link
                 to={linkpath}
                 className="text-[#fa9977] text-base relative inline-block
@@ -97,6 +104,6 @@ export const Form = ({
           </div>
         </CardFooter>
       </Card>
-    </div>
+    </motion.div>
   );
 };

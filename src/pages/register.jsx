@@ -1,4 +1,4 @@
-import { Form } from "@/components/Auth";
+import { Form } from "@/components/Card";
 import { useState } from "react";
 import axios from "axios";
 
