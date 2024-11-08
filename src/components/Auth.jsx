@@ -9,49 +9,46 @@ import {
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
-import { useState } from "react";
-import axios from "axios";
+import { Login } from "@/pages/login";
+import { Signup } from "@/pages/register";
+import { Link } from "react-router-dom";
 
 export const AuthPage = () => {
   return (
-    <div>
+    <div className="flex justify-center">
       <Login />
       <Signup />
     </div>
   );
 };
 
-const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onSubmit = async(event) => {
-    event.preventDefault();
-
-    try{
-        await axios.post("http://localhost:3001/auth/register", {
-            username,
-            password,
-        });
-        alert("Registered successfully");
-    }catch(error){
-      console.log(error);
-    }
-  }
-
+export const Form = ({
+  username,
+  setUsername,
+  password,
+  setPassword,
+  onSubmit,
+  label,
+  link,
+  description,
+  linkpath,
+  linktext,
+}) => {
   return (
-    <div className="flex flex-col items-center justify-center py-44 text-[#2a2d34]">
-      <Card className="w-[350px] bg-[#d7dae0] border-[#484f5c]">
+    <div className="flex flex-col items-center justify-center py-36 text-[#2a2d34]">
+      <Card className="w-[300px] md:w-[350px] bg-[#1F1F1F] border-[#484f5c]">
         <CardHeader>
-          <CardTitle className="text-center text-xl">Sign up</CardTitle>
-          <CardDescription className="text-center text-sm">
-            Enter your credentials to login to your account
+          <CardTitle className="text-center text-white text-xl">
+            {label}
+          </CardTitle>
+          <CardDescription className="text-center text-sm text-[#fa9977]">
+            {description}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form >
+          <form>
             <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
+              <div className="flex flex-col text-white space-y-1.5">
                 <Label htmlFor="username">Name</Label>
                 <Input
                   type="text"
@@ -62,7 +59,7 @@ const Signup = () => {
                   className="border-[#484f5c]"
                 />
               </div>
-              <div className="flex flex-col space-y-1.5">
+              <div className="flex flex-col space-y-1.5 text-white">
                 <Label htmlFor="password">Password</Label>
                 <Input
                   type="password"
@@ -76,19 +73,30 @@ const Signup = () => {
             </div>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button variant="outline" className="hover:bg-[#676f80]">Login</Button>
-          <Button className="text-[#2a2d34] bg-[#fa9977]" onClick={onSubmit}>Register</Button>
+        <CardFooter className="flex flex-col">
+          <div>
+            <h1 className="cursor-default mb-5 text-white text-sm">
+              {linktext} {"  "} 
+              <Link
+                to={linkpath}
+                className="text-[#fa9977] text-base relative inline-block
+             after:absolute after:left-0 after:-bottom-0 after:w-0 after:h-[1px] 
+             after:bg-[#fa9977] after:transition-all after:duration-500 hover:after:w-full"
+              >
+                {label}
+              </Link>
+            </h1>
+          </div>
+          <div className="flex space-x-32">
+            {/* <Button variant="outline" className="hover:bg-[#676f80]">
+              {link}
+            </Button> */}
+            <Button className="text-[#2a2d34] bg-[#fa9977]" onClick={onSubmit}>
+              {label}
+            </Button>
+          </div>
         </CardFooter>
       </Card>
-    </div>
-  );
-};
-
-const Login = () => {
-  return (
-    <div>
-      <h1></h1>
     </div>
   );
 };
