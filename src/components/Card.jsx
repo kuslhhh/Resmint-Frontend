@@ -95,9 +95,6 @@ export const Form = ({
             </h1>
           </div>
           <div className="flex space-x-32">
-            {/* <Button variant="outline" className="hover:bg-[#676f80]">
-              {link}
-            </Button> */}
             <Button className="text-[#2a2d34] bg-[#fa9977]" onClick={onSubmit}>
               {label}
             </Button>
